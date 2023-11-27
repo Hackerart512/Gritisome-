@@ -1,0 +1,206 @@
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <style>
+        *{
+            padding:0px;
+            margin: 0px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .container{
+            padding:23px;
+            margin:0px 37px;
+            display: flex;
+        }
+
+        .img-div{
+            width: 50%;
+            height: 434px;
+            overflow: hidden;
+            border-radius: 10px;
+        }
+
+        img{
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .description{
+            padding: 23px;
+            width: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        .footer{
+            background-color:#422323;
+            display: flex;
+            justify-content: center;
+            padding:44px;
+            color: white;
+            flex-direction:column;
+            position: relative;
+        }
+
+        p{
+            margin: 18px 0px;
+            color:#8f8484;
+        }
+
+        h2{
+            color:white;
+            font-style: oblique;
+        }
+
+        h1{
+            text-align:center;
+        }
+
+        span{
+            color:#56ad56;
+        }
+
+        .first-row{
+            display: flex;
+            justify-content: center;
+            width:100%;
+            color: white;
+            margin-bottom: 51px;
+        }
+
+        .details{
+            padding-right: 170px;
+        }
+
+        .SolidMediaIcon{
+           display: flex;
+        }
+
+        .SolidMediaIcon .icon{
+            margin: 8px;
+            cursor: pointer;
+        }
+
+        .column{
+            margin: 0px 38px;
+            width: 20%;
+        }
+
+        ul{
+            margin: 10px 0px;
+        }
+
+        ul li{
+            list-style-type: none;
+            padding:5px;
+            color:#8f8484;
+        }
+
+        ul li:hover{
+            color:#8f84849e;
+            cursor: pointer;
+        }
+
+        .copyright{
+            display:flex;
+            align-items:center;
+            justify-content:space-between;
+            border-top:3px solid #8f84848c;
+            padding-top:23px;
+        }
+
+        .copyright2023{
+            color:#8f8484;
+        }
+
+        .privacy-terms{
+            display:flex
+        }
+
+        .privacy-terms > li{
+           list-style-type: none;
+           padding: 10px;
+           color:#8f8484;
+        }
+
+
+    </style>
+ </head>
+ <body>
+    <section class="container">
+        <div class="img-div">
+            <img src="/image/salad.jpg" alt="img..">
+        </div>
+        <div class="description">
+
+            <h1>About<span>Us</span> </h1>
+            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Vel possimus, fugiat, doloribus necessitatibus cupiditate ipsam temporibus harum molestiae, rerum sint animi quis! Iure, nesciunt eligendi doloremque quis inventore enim odio provident quae sunt accusantium.
+
+            </p>
+        </div>
+    </section>
+
+    <section class="footer">
+        <div class="first-row">
+            <div class="details">
+                <h2>Griti<span>some</span> </h2>
+                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Consectetur neque nam earum minima aspernatur possimus doloribus nostrum sint! Libero impedit cum dolor temporibus!</p>
+
+                <div class="SolidMediaIcon">
+                    <div class="icon"><i class="fa-brands fa-facebook-f"></i></div>
+                    <div class="icon"><i class="fa-brands fa-instagram"></i></div>
+                    <div class="icon"><i class="fa-brands fa-linkedin"></i></div>
+                    <div class="icon"><i class="fa-brands fa-twitter"></i></div>
+                </div>
+            </div>
+
+            <div class="column">
+                <h3>About Us</h3>
+                <ul>
+                    <li>About Us</li>
+                    <li>Careers</li>
+                    <li>Blog</li>
+                    <li>Press Room</li>
+                </ul>
+            </div>
+            <div class="column">
+                <h3>Resource</h3>
+                <ul>
+                    <li>Our Work</li>
+                    <li>Services</li>
+                    <li>FAQ</li>
+                    
+                </ul>
+            </div>
+            <div class="column">
+                <h3>Contact Us</h3>
+                <ul>
+                    <li>About Us</li>
+                    <li>Menu</li>
+                    <li>Contact Us</li>
+                    
+                </ul>
+            </div>
+        </div>
+
+        <div class="copyright">
+            <div class="copyright2023">
+                Copyright@gritisome. All Right reserved
+            </div>
+            <div class="privacy-terms">
+                <li>Privacy</li>
+                <li>Terms of service</li>
+            </div>
+        </div>
+    </section>
+ </body>
+ </html>

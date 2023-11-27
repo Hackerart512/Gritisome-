@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Hover Animation</title>
+
+    <!-- font awesome cdn -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- font awesome cdn -->
+
+    <style>
+        *{
+            padding:0px;
+            margin:0px;
+            font-family: system-ui;
+        }
+
+        body{
+            background:#f4fafa;
+        }
+
+        nav{
+            display:flex;
+            align-items: center;
+            justify-content:space-between;
+            padding:12px;
+        }
+
+        ul{
+            display:flex;
+          
+            justify-content:space;
+        }
+
+        ul>li{
+            list-style-type: none;
+            margin: 0px 24px;
+
+            font-size: 15px;
+            font-weight: 600px;
+            cursor: pointer;
+        }
+        
+        nav>ul>li:hover{
+            color: #94e7e3;
+        }
+
+        .active{
+            color: #94e7e3;
+        }
+
+        .profile_menu{
+            position: relative;
+            display:flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .profile_image>img{
+            width: 50px;
+            height: 50px;
+            border-radius:50%;
+            margin: 3px;
+        }
+
+        .profile_image{
+            background:#94e7e3;
+            display: flex;
+            border-radius: 50%;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .profile_Hover_menu{
+           
+            position: absolute;
+            left: -90px;
+            top: 62px;
+            padding: 0px;
+            box-shadow: 0 0 10px #e7e7e7;
+            width: 216px;
+            background-color: white;
+            height: 0px;
+            overflow: hidden;
+        }
+
+        .full_name{
+            padding:14px;
+        }
+
+        p.email{
+            font-size: 12px;
+        }
+
+        .fa-solid{
+            margin: 0px 14px;
+        }
+
+        .profile-list-item > ul{
+            flex-direction: column;
+            width: 100%;
+            margin: 0px;
+            padding: 0px;
+            
+        }
+
+        .profile-list-item > ul>li{
+            margin: 8px 4px;
+            cursor: pointer;
+        }
+
+        hr{
+            width: 100%;
+            height: 2px;
+            background-color:#ececec;
+            border: none;
+        }
+
+        .fa-star{
+            background-color:orange;
+            padding:4px;
+            margin-left: 7px;
+            color: white;
+        }
+
+        .logout-icon{
+            color:red;
+        }
+
+        @keyframes animate {
+            from{
+                height:0px;
+                padding:0px;
+            }
+            to{
+                height:345px;
+                padding: 6px 0px;
+            }
+        }
+
+        .profile:hover .profile_Hover_menu{
+            animation: animate 1s forwards;
+        }
+
+    </style>
+
+</head>
+<body>
+    <nav>
+        <ul>
+            <li class="active">Home</li>
+            <li>About</li>
+            <li>Services</li>
+            <li>Contact</li>
+        </ul>
+        <div class="profile_menu">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <i class="fa-solid fa-bell"></i>
+    
+            <div class="profile">
+                <div class="profile_image">
+                    <img src="../image/4.jpg" alt="">
+                </div>
+    
+                <div class="profile_Hover_menu">
+                    <div class="full_name">
+                        <h4>Full name</h4>
+                        <p class="email">Gritisome@gmail.com</p>
+                    </div>
+    
+                    <div class="profile-list-item">
+                        <ul>
+                            <hr>
+                            <li><i class="fa-solid fa-user"></i> My profile</li>
+                            <li><i class="fa-solid fa-gear"></i> Settings</li>
+                            <li><i class="fa-solid fa-moon"></i>Dark mode</li>
+                            <hr>
+                            <li><i class="fa-solid fa-book-open"></i>Guid & Tutotial</li>
+                            <li><i class="fa-solid fa-question"></i> Help Center</li>
+                            <hr>
+                            <li><i class="fa-solid fa-star"></i>Go premium</li>
+                            <li class="logout-icon"><i class="fa-solid fa-user"></i>Log out</li>
+                        </ul>
+                    </div>
+    
+                </div>
+            </div>
+        </div>
+    </nav>
+    
+</body>
+</html>

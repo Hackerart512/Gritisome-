@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        * {
+            padding: 0px;
+            margin: 0px;
+        }
+
+        body {
+            background-color: black;
+        }
+
+        .container {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+        }
+
+        .circle {
+            height: 300px;
+            border-radius: 50%;
+            /* border: 2px solid white; */
+            width: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            flex-direction: column;
+            position: relative;
+            animation: rotate1 9s linear infinite;
+        }
+
+        .word {
+            position: absolute;
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+        }
+
+        .mid-circle {
+            height: 150px;
+            border-radius: 50%;
+            /* border: 2px solid white; */
+            width: 150px;
+            position: relative;
+            top: -227px;
+            left: 1px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            color: white;
+            animation: rotate2 9s linear infinite;
+        }
+
+        .mid-word {
+            position: absolute;
+            display: flex;
+            justify-content: space-between;
+            width: 100%
+        }
+
+        span{
+            transform: rotate(270deg);
+        }
+
+
+        @keyframes rotate1 {
+            to{
+                transform: rotate(360deg);
+            } 
+        }
+        @keyframes rotate2{
+            to{
+                transform: rotate(-360deg);
+            } 
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="circle"></div>
+        <div class="mid-circle"></div>
+    </div>
+
+    <script>
+        let line1 = 'Hy guys welcome back to Another new video, we are creating new content';
+        let line2 = 'Please subscribe gritisome and watch latest video';
+
+
+        // for circle :- 1
+        let circle1 = document.querySelector('.circle');
+        let index1 = 0;
+        const Interval_of_outer_circle = setInterval(interval_of_outer_circle, 10);
+
+
+        // for circle :- 2
+        let circle2 = document.querySelector('.mid-circle');
+        let index2 = 0;
+        const Interval_of_inner_circle = setInterval(interval_of_inner_circle, 10);
+
+
+        function interval_of_outer_circle() {
+            let div = document.createElement('div');
+
+            div.setAttribute('class', 'word')
+
+            let span1 = document.createElement('span')
+
+            span1.innerHTML = `${line1[index1]}`;
+
+            div.appendChild(span1);
+
+            circle1.appendChild(div);
+
+            if(index1 === line1.length - 1) {
+                clearInterval(Interval_of_outer_circle);
+            }
+
+            index1 += 1;
+        }
+
+
+        function interval_of_inner_circle() {
+            let div = document.createElement('div');
+
+            div.setAttribute('class', 'mid-word')
+
+            let span1 = document.createElement('span')
+
+            span1.innerHTML = `${line2[index2]}`;
+
+            div.appendChild(span1);
+
+            circle2.appendChild(div);
+
+            if(index2 === line2.length - 1) {
+                clearInterval(Interval_of_inner_circle);
+            }
+
+            index2 += 1;
+        }
+
+
+        setTimeout(()=>{
+            let word = document.querySelectorAll('.circle .word');
+
+            let mid_word = document.querySelectorAll('.mid-circle .mid-word');
+
+            word.forEach((point, i)=>{
+                point.style.transform = `rotate(${i * 5}deg)`
+            })
+
+            mid_word.forEach((point, i)=>{
+                point.style.transform = `rotate(${i * 7}deg)`
+            })
+
+
+        },2000)
+    </script>
+</body>
+
+</html>

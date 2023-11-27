@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gradient_effect</title>
+    <style>
+         *{
+            padding: 0px;
+            margin: 0px;
+            font-family:sans-serif;
+         }
+
+         .home-section{
+            position: relative;
+            z-index: 0;
+            opacity: 50%;
+            background-color:#f7fdff;
+            height: 571px;
+         }
+
+         nav{
+            width: 100%;
+            display: flex;
+            justify-content: center;
+         }
+
+         ul{
+            display:flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin: 24px;
+         }
+
+         ul li{
+            list-style-type: none;
+            margin: 0px 40px;
+            transition: all 0.5s ease-in-out;
+         }
+
+         ul li:hover{
+            color: #9be0d2;
+            cursor: pointer;
+         }
+
+         .about{
+            display: flex;
+            padding:23px;
+         }
+         h2{
+            font-size:41px;
+            margin: 24px 0px;
+         }
+
+         span{
+            color:#33c691;
+         }
+
+         .details{
+            width: 50%;
+            padding:23px;
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+         }
+
+         .btn{
+            background-color: white;
+            width: 110px;
+            height:29px;
+            border: none;
+            margin: 21px 0px 0px;
+            box-shadow: 0 0 10px #b7b7b7;
+         }
+
+         .container{
+            height:571px;
+            width: 100%;
+            background-image: conic-gradient(#b6e7dc 180deg,white 360deg);
+            position: absolute;
+            top:0px;
+            z-index: -1;
+         }
+
+    </style>
+</head>
+<body>
+    <section class="home-section">
+        <nav>
+            <ul>
+                <li>Home</li>
+                <li>About</li>
+                <li>Servive</li>
+                <li>Blog</li>
+            </ul>
+        </nav>
+
+        <div class="about">
+            <div class="details">
+                <h2>The Tik Tok clock <br>is <span>Clocking</span></h2>
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quos facere tenetur asperiores consectetur dolor, numquam voluptate dolore vel nemo quis animi ipsum saepe.</p>
+                <button class="btn">Ream More</button>
+            </div>
+        </div>
+    </section>
+
+    <div class="container"></div>
+
+    <script>
+        let container = document.querySelector(".container")
+        
+        let degree = 0;
+
+        setInterval(() =>{
+            container.style.backgroundImage = `conic-gradient(#b6e7dc ${degree-16}deg,white ${degree}deg)`;
+            degree += 1;
+
+            if(degree === 360)
+               degree = 0;
+        },10)
+    </script>
+</body>
+</html>

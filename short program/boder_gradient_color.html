@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Border gradient color</title>
+    <style>
+
+        *{
+            background-color: #e8e8e8;
+        }
+
+        .btn{
+            display: block;
+            margin:auto;
+            width:15%;
+            margin-top: 23vh;
+            padding:.5rem 2rem;
+            background-color: white;
+            border-image:linear-gradient(18deg, #78e4ff, #ff48fa) 1;
+            animation:0.8s round ease-in-out infinite;
+        }
+
+        @keyframes round {
+            0%{
+                border-image:linear-gradient(18deg, #78e4ff, #ff48fa) 1;
+            }
+            50%{
+                border-image:linear-gradient(147deg, #78e4ff, #ff48fa) 1;
+            }
+            75%{
+                border-image:linear-gradient(255deg, #78e4ff, #ff48fa) 1;
+            }
+            100%{
+                border-image:linear-gradient(314deg, #78e4ff, #ff48fa) 1;
+            }
+
+            
+        }
+     
+
+    </style>
+</head>
+<body>
+    <button class="btn">GriTisome</button>
+</body>
+</html>

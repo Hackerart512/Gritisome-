@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gritosome text animation</title>
+    <style>
+        *{
+            margin: 0px;
+            padding:0px;
+        }
+
+        body{
+            background-color:black;
+        }
+
+        .container{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            font-size:20px;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        }
+
+        .fisrt-div{
+            width:50%;
+            height: 100vh;
+            overflow: hidden;
+            background-image: url("../image/photo-1504674900247-0877df9cc836.jpeg");
+            background-repeat: no-repeat;
+            background-size:cover;
+
+        }
+
+
+        .second-div{
+            width:50%;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        h1.first-h{
+            position:relative;
+            right: -641px;
+            top:183px;
+            color:white;
+            overflow: hidden;
+            font-size: 51px;
+            text-shadow: -2px 2px 0 black,
+                          2px 2px 0 black,
+                          2px -2px 0 black,
+                          -2px -2px 0 black;
+            mix-blend-mode: multiply;
+            animation: move 9s linear 4.5s infinite;
+        }
+
+        h1.second-h{
+            position:relative;
+            right: -641px;
+            top:183px;
+            color:white;
+            overflow: hidden;
+            font-size: 51px;
+            animation: move 9s linear infinite;
+        }
+
+        @keyframes move {
+            0%{
+                right:-640px;
+            }
+            10%{
+                right:-512px;
+            }
+            20%{
+                right:-384px;
+            }
+            30%{
+                right:-256px;
+            }
+            40%{
+                right:-128px;
+            }
+            50%{
+                right:0px;
+            }
+            60%{
+                right:128px;
+            }
+            70%{
+                right:256px;
+            }
+            80%{
+                right:384px;
+            }
+            90%{
+                right:512px;
+            }
+            100%{
+                right:640px;
+            }
+            
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="fisrt-div">
+            <h1 class="first-h">SUBSCRIBE OUR CHANNEL</h1>
+        </div>
+        <div class="second-div">
+            <h1 class="second-h">SUBSCRIBE OUR CHANNEL</h1>
+        </div>
+    </div>
+</body>
+</html>

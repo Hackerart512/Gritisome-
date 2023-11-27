@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shake effect</title>
+    <style>
+        body{
+            display: flex;
+            justify-content:center;
+            align-items:center;
+            height: 50vh;
+        }
+
+        input{
+            border: 2px solid gray;
+            height:31px;
+            width:178px;
+            border-radius: 7px;
+        }
+
+        input:focus{
+            border: 2px solid rgb(30, 129, 205);
+            outline: none;
+        }
+
+        input:focus:invalid{
+            color:red;
+            border: 2px solid red;
+            outline: none;
+            animation: shake 0.2s ease-in-out;
+        }
+
+        @keyframes shake {
+            0%{
+            transform: translateX(0px);
+            }
+            50%{
+            transform: translateX(10px);
+            }
+            100%{
+            transform: translateX(-10px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <input type="text" placeholder="Name" pattern="[a-zA-Z]*">
+</body>
+</html>

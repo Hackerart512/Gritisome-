@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zoom Effect</title>
+
+
+    <style>
+        *{
+            padding:0px;
+            margin: 0px;
+            font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        }
+
+        .container{
+            display:flex;
+            justify-content:center;
+            padding:23px;
+        }
+
+        .image-div{
+            width:50%;
+            height: 525px;
+            position: relative;
+            overflow:hidden;
+        }
+
+        .image-div > img{
+            height: 100%;
+            width: 100%;
+        }
+
+        .details{
+            width:50%;
+            padding:25px;
+        }
+
+        .cursor {
+            position:absolute;
+            height: 200px;
+            width: 200px;
+            border-radius:50%;
+            border: 1px solid gray;
+            top:0px;
+            background-image: url("../image/shoes-1.jpg");
+            background-repeat: no-repeat;
+            overflow: hidden
+        }
+
+        h2{
+            font-size: 34px;
+            font-weight: bold;
+            color:orange;
+        }
+
+        p{
+            color:#d1d1d1;
+            margin: 23px 0px;
+            font-size: 20px;
+        }
+
+        .btn{
+            background-color: black;
+            color:white;
+            border-radius:52px;
+            padding:8px;
+            width: 155px;
+            margin: 23px 0px;
+            border: none;
+            transition:all 0.5s ease-in-out;
+        }
+
+        .btn:hover{
+            opacity:0.6;
+            background-color: orange;
+            color:black
+        }
+
+        .shoes-type{
+            height:150px;
+            width: 100%;
+            display: flex;
+        }
+
+        .circle{
+            height: 44px;
+            width: 44px;
+            border-radius:50%;
+            margin: 7px;
+        }
+        
+        .circle:nth-child(1){
+            background-color:#eae5e3;
+        }
+        .circle:nth-child(2){
+            background-color:#b9b9fa;
+        }
+        .circle:nth-child(3){
+            background-color:#813d5c;
+        }
+        .circle:nth-child(4){
+            background-color:tomato;
+        }
+        .circle:nth-child(5){
+            background-color:#ffedcc;
+        }
+
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div  onmousemove="myFunction(event)" class="image-div">
+            <img  class="shoesImage" src="../image/shoes-1.jpg" alt="img..">
+            <div class="cursor"></div>
+        </div>
+
+        <div class="details">
+            <h2>Baffaio</h2>
+            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Hic laborum corporis inventore laudantium in doloremque nulla natus possimus incidunt vero. Accusantium, voluptatem est?</p>
+
+            <p>$ 1299.00</p>
+
+            <div class="shoes-type">
+                <div class="circle"></div>
+                <div class="circle"></div>
+                <div class="circle"></div>
+                <div class="circle"></div>
+                <div class="circle"></div>
+            </div>
+
+            <button class="btn">Add To Cart</button>
+        </div>
+    </div>
+
+
+    <script>
+        let zoomCursor = document.querySelector(".cursor");
+        let image = document.querySelector(".shoesImage")
+        
+        function myFunction(e) {
+            image.style.filter = "blur(1px)";
+            let x = e.clientX - 84;
+            let y = e.clientY - 24;
+            zoomCursor.style.left = x + "px";
+            zoomCursor.style.top = y + "px";
+
+            if(x <= 80) zoomCursor.style.backgroundPositionX = -100 - x + "px";
+            else zoomCursor.style.backgroundPositionX = -150 -x + "px";
+
+            zoomCursor.style.backgroundPositionY = -114 -y + "px";
+        }
+
+    </script>
+</body>
+</html>

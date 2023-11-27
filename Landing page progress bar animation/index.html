@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        *{
+            margin:0px;
+            padding:0px;
+            font-family: sans-serif;
+        }
+
+        :root{
+            --LightOrange: #f4a84bbf;
+        }
+
+        .container{
+            width:100%;
+        }
+
+        .progress{
+            height:13px;
+            background-color: #e6aa77;
+            animation:progress 3s linear forwards;
+        }
+
+        @keyframes progress {
+             0%{
+                width:0%;
+             }
+             100%{
+                width:100%;
+                display: none;
+             }
+        }
+
+        .content{
+            position:relative;
+            background-color: #ecd6b275;
+            width:100%; height:0px;
+            overflow: hidden;
+            animation: downanimation 1.5s ease-out 3s forwards;
+        }
+
+
+        @keyframes downanimation {
+            from{
+                height:0px;
+            }
+            to{
+                height:571px;
+            }
+            
+        }
+        nav{
+            display:flex;
+            align-items:center;
+            justify-content:space-between;
+        }
+
+        .logo-text{
+            padding: 23px 30px;
+            font-size:26px;
+            font-weight: 700;
+        }
+
+        span{
+            color: var(--LightOrange)
+        }
+
+        ul{
+            display:flex;
+            align-items:center;
+            justify-content:center;
+        }
+
+        ul li{
+            margin:23px;
+            list-style-type: none;
+        }
+
+        ul li:hover{
+            color: var(--LightOrange);
+            cursor: pointer;
+        }
+
+        h2{
+            color: white;
+            text-align: center;
+            font-size:32vh;
+            font-family: -webkit-body-sm;
+            font-weight: 100;
+            border-bottom:2px solid white;
+            border-top:2px solid white;
+            margin:0px 167px;
+            margin-top:90px
+        }
+
+    
+        .image1>img{
+            position: absolute;
+            top:102px;
+            height: 407px;
+            width: 344px;
+            z-index: -1;
+            left: 36%;
+        }
+
+        .imageLeft>img{
+            position: absolute;
+            top:352px;
+            height: 156px;
+            width: 168px;
+            z-index: -1;
+            left: 4%;
+        }
+
+        .imageRight>img{
+            position: absolute;
+            top:102px;
+            height: 156px;
+            width: 168px;
+            z-index: -1;
+            left: 82%;
+        }
+
+        p.pera{
+            text-align: center;
+            color: white;
+            font-size: 25px;
+            margin: 10px;
+        }
+
+        .active{
+            color: var(--LightOrange)
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="progress"></div>
+    </div>
+
+    <div class="content">
+        <nav>
+            <div class="logo">
+                <p class="logo-text">
+                    <span>GriTi</span>some
+                </p>
+            </div>
+
+            <div class="navbar">
+                <ul>
+                    <li class="active">Home</li>
+                    <li>About</li>
+                    <li>Contact Us</li>
+                    <li>Service</li>
+                    <li>Login</li>
+                </ul>
+            </div>
+        </nav>
+
+        <h2>WELCOME</h2>
+
+        <p class="pera">NEW COLLECTION HERE</p>
+
+        <div class="image1">
+            <img src="../image/4.jpg" alt="">
+        </div>
+        <div class="imageLeft">
+            <img src='../image/boy2.jpg' alt="">
+        </div>
+        <div class="imageRight">
+            <img src="../image/g-2.jpg" alt="">
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Underline animation</title>
+    <style>
+        *{
+            font-family:sans-serif;
+            padding:0px;
+            margin: 0px;
+        }
+
+        body{
+            background-color: #2f1b3e;
+        }
+
+        nav{
+            background-color: #3c274f;
+            padding:23px;
+        }
+
+        ul{
+            display: flex;
+            justify-content: center;
+            margin:0px 316px;
+        }
+
+        ul li{
+            position: relative;
+            list-style-type: none;
+            color:blue;
+            padding:11px;
+            transition: all 0.5s ease-in-out;
+            font-size: 18px;
+            color:white;
+        }
+
+        ul li:before{
+            position: absolute;
+            content: "";
+            width: 0%;
+            height: 40px;
+            color:red;
+            border-bottom:2px solid red;
+            top:3px;
+        }
+
+        li:hover {
+            cursor: pointer;
+        }
+
+        li:hover:before{
+            transition:scale(1);
+            animation:underline 0.5s ease-in-out;
+            width:73%;
+        }
+
+
+        @keyframes underline {
+            0%{
+                width: 0%;
+            }
+            100%{
+                width: 73%;
+            }
+            
+        }
+        
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li>Home</li>
+            <li>About</li>
+            <li>Services</li>
+            <li>Contact</li>
+        </ul>
+    </nav>
+</body>
+</html>

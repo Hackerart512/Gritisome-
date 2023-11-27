@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>griTisome image range slider</title>
+    <style>
+
+        *{
+            margin:0px;
+            padding:0px;
+            background-color: #f1edf0;
+        }
+       
+        .outer-container{
+            position: relative;
+            display: flex;
+            justify-content:center;
+            align-items:center;
+            flex-direction:column;
+            margin: 0 auto;
+            width: 28%;
+            margin-top:100px;
+            height: 60vh;
+            background-color: #fdecef;
+            border: 10px solid pink;
+            border-radius:6px;
+            border-style: double;
+        }
+        
+        .image-container img {
+            height:102px;
+            width: 102px;
+        }
+        
+        .image-size{
+            position:absolute;
+            bottom:17px;
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="outer-container">
+        <div class="image-container">
+            <img id ="image" src="beautiful_pink_bad.jpg" alt="">
+        </div>
+        <input class="image-size" type="range">
+    </div>
+
+    <script>
+        let slider = document.querySelector(".image-size");
+        slider.oninput = function(){
+            let img = document.querySelector("#image")
+            img.style.height = `${this.value*2}px`;
+            img.style.width = `${this.value*2}px`;
+        }
+    </script>
+</body>
+</html>

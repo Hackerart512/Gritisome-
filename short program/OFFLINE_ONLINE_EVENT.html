@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online offline event in html</title>
+    <style>
+        *{
+            padding:0px;
+            margin: 0px;
+        }
+
+        .online{
+            display:none;
+            align-items: center;
+            justify-content: center;
+            margin:auto;
+            border:2px solid green;
+            padding:6px;
+            background-color: #9cebbd;
+            border-radius: 0px;
+            font-size:30px ;
+            font-family: monospace;
+            width: 100%;
+        }
+
+        .offline{
+            display:none;
+            align-items: center;
+            justify-content: center;
+            margin:auto;
+            border:2px solid red;
+            padding:6px;
+            background-color: #FF9E93;
+            border-radius: 0px;
+            font-size:30px ;
+            font-family: monospace;
+            width: 100%;
+        }
+    </style>
+</head>
+<body onoffline="offLineFunction()" ononline="onLineFunction()">
+    <div class="online">
+        ONLINE MODE ENABLE.
+    </div>
+    <div class="offline">
+        OFFLINE MODE ENABLE !
+    </div>
+
+    <script>
+        function offLineFunction() {
+            document.querySelector('.offline').style.display='flex';
+            document.querySelector('.online').style.display='none'
+        }
+        function onLineFunction() {
+            document.querySelector('.online').style.display='flex';
+            document.querySelector('.offline').style.display='none'
+        }
+    </script>
+</body>
+</html>

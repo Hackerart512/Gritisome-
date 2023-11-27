@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            background-color: #322e2e;
+            margin: 0px;
+            padding: 0px;
+        }
+
+        .card-group {
+            position: relative;
+            z-index: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .card {
+            position: relative;
+            width: 232px;
+            height: 263px;
+            padding: 5px;
+            background-color: white;
+            margin: 10px;
+        }
+
+        .img-div>img {
+            width: 100%;
+            height: 100%;
+        }
+
+        .img-div {
+            height: 100%;
+            transition: all 0.5s ease-in-out;
+        }
+
+        .details {
+            display:none;
+            position: absolute;
+            bottom: 5px;
+            width: 96%;
+            transition: all 0.5s ease-in-out;
+        }
+
+        h4,
+        p {
+            background-color: white;
+            font-weight: 900;
+            text-align: center;
+            padding: 3px;
+        }
+
+        p{
+            color:#83cd83;
+        }
+        .bg1,
+        .bg2 {
+            display: none;
+            background-color: white;
+            width: 231px;
+            height: 268px;
+            position: absolute;
+            top: 0px;
+            z-index: -1;
+        }
+
+        .bg1 {
+            transform: rotate(11deg);
+            animation: rotate1 0.5s linear;
+        }
+
+        .bg2 {
+            transform: rotate(20deg);
+            animation: rotate2 0.5s .7 linear;
+        }
+
+        @keyframes rotate1 {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            25% {
+                transform: rotate(4deg);
+            }
+
+            50% {
+                transform: rotate(8deg);
+            }
+
+            100% {
+                transform: rotate(11deg);
+            }
+        }
+
+        @keyframes rotate2 {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            25% {
+                transform: rotate(8deg);
+            }
+
+            50% {
+                transform: rotate(16deg);
+            }
+
+            100% {
+                transform: rotate(20deg);
+            }
+        }
+
+        .card:hover .bg1{
+            display: block;
+        }
+        .card:hover .bg2{
+            display: block;
+        }
+        .card:hover .details{
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="card-group">
+        <div class="card">
+            <div class="img-div">
+                <img src="../image/boy1.1.jpg" alt="">
+            </div>
+            <div class="details">
+                <h4>Rehan Brown</h4>
+                <p>London, UK</p>
+            </div>
+            <div class="bg1"></div>
+            <div class="bg2"></div>
+        </div>
+        <div class="card">
+            <div class="img-div">
+                <img src="../image/boy2.1.jpg" alt="">
+            </div>
+            <div class="details">
+                <h4>Sreya Brown</h4>
+                <p>London, UK</p>
+            </div>
+            <div class="bg1"></div>
+            <div class="bg2"></div>
+        </div>
+        <div class="card">
+            <div class="img-div">
+                <img src="../image/boy2.2.jpg" alt="">
+            </div>
+            <div class="details">
+                <h4>Rishandar  Brown</h4>
+                <p>London, UK</p>
+            </div>
+            <div class="bg1"></div>
+            <div class="bg2"></div>
+        </div>
+    </div>
+</body>
+
+</html>

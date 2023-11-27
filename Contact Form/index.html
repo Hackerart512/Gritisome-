@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact form</title>
+    <style>
+        * {
+            margin: 0px;
+            padding: 0px;
+            background-color: white;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+        }
+
+        body {
+            padding: 3px 23px;
+            background-color: #ededed47;
+        }
+
+        h2 {
+            text-align: center;
+            font-size: 30px;
+            background-color: #ededed12;
+        }
+
+        h3 {
+            padding: 11px 12px;
+            font-size: 21px;
+        }
+
+        .icon-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #ededed12;
+        }
+
+        .icon-card {
+            background-color: #ededed12;
+            padding: 4px 0px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            margin: 14px 40px 11px 40px;
+        }
+
+        .icon-card i {
+            background-color: #6fc2e4;
+            border-radius: 50%;
+            color: white;
+            padding: 12px;
+            font-size: 15px;
+            display: flex;
+            align-content: center;
+            justify-content: center;
+            margin: 12px
+        }
+
+        span {
+            font-weight: 900;
+            color: black;
+            background-color: #ededed12;
+        }
+
+        p {
+            color: grey;
+            background-color: #ededed12;
+        }
+
+        .contact-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 9px 80px;
+        }
+        
+        .contact-form {
+            width: 60%;
+            padding: 6px 20px;
+
+        }
+
+        form {
+            width: 100%;
+        }
+
+        .inp {
+            margin: 12px;
+        }
+
+        .inp input,
+        textarea {
+            width: 100%;
+            height: 34px;
+            outline: none;
+            border: none;
+            border-bottom: 1px solid grey;
+            resize: none;
+            margin-top: 7px;
+        }
+
+        textarea {
+            height: 80px;
+        }
+        .inp input::placeholder{
+            font-size:16px
+        }
+
+        .inp-row input::placeholder,textarea::placeholder{
+            font-size:16px
+        }
+
+
+        .rowinp {
+            display: flex;
+        }
+
+        .inp-row {
+            width: 50%;
+            margin: 2px 12px;
+        }
+
+        .inp-row input {
+            width: 100%;
+            height: 34px;
+            outline: none;
+            display: flex;
+            flex-direction: column;
+            border: none;
+            border-bottom: 1px solid grey;
+            margin-top: 7px;
+        }
+
+        label{
+            font-weight:610
+        }
+        .contact-image {
+            width: 40%;
+            height: 383px;
+        }
+
+        .contact-image img {
+            width: 100%;
+            height: 383px;
+        }
+
+        .btn {
+            padding: 12px;
+            color: white;
+            height: 39px;
+            width: 122px;
+            border-radius: 6px;
+            border: none;
+            margin: 0px 6px;
+            background-color: #6fc2e4;
+        }
+
+        .btn:hover {
+            background-color: #6fc2e4bd;
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+        integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+    <h2>Contact Form</h2>
+
+    <div class="icon-container">
+        <div class="icon-card">
+            <i class="fa-solid fa-location-dot"></i>
+            <p><span>Address: </span>This is my address</p>
+        </div>
+        <div class="icon-card">
+            <i class="fa-solid fa-phone"></i>
+            <p><span>Phone: </span>+91 7777777777</p>
+        </div>
+        <div class="icon-card">
+            <i class="fa-solid fa-paper-plane"></i>
+            <p><span>Email: </span>gritisome@gmail.com</p>
+        </div>
+        <div class="icon-card">
+            <i class="fa-solid fa-earth-americas"></i>
+            <p><span>Website: </span>WWW.gritisome.com</p>
+        </div>
+    </div>
+
+    <div class="contact-container">
+        <div class="contact-form">
+
+            <h3>Contact Us</h3>
+            <form action="">
+                <div class="rowinp">
+                    <div class="inp-row">
+                        <label for="inputname">FULL NAME</label>
+                        <input placeholder="Name" id="inputname" type="text">
+                    </div>
+                    <div class="inp-row">
+                        <label for="inputemail">EMAIL ADDRESSS</label>
+                        <input placeholder="Email" id="inputemail" type="email">
+                    </div>
+                </div>
+                <div class="inp">
+                    <label for="inputsubject">SUBJECT</label>
+                    <input placeholder="Subject" id="inputsubject" type="text">
+                </div>
+                <div class="inp">
+                    <label for="inputname">MESSAGE</label>
+                    <textarea name="msg" placeholder="Message" id="inputmsg" cols="30" ></textarea>
+                </div>
+
+                <button class='btn' type="button">Send Message</button>
+            </form>
+        </div>
+        <div class="contact-image">
+            <img src="../image/contact1.jpg" alt="">
+        </div>
+    </div>
+</body>
+
+</html>

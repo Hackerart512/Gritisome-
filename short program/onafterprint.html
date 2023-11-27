@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OnAftePrint</title>
+    <style>
+        *{
+            padding:0px;
+            margin:0px;
+        }
+
+        body{
+            background-color:#aac5cb;
+            margin: 30px;
+            padding:30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            border: 8px double #196f9b;
+            border-radius: 6px;
+
+        }
+
+        h1,p{
+            margin: 10px;
+            color:#225152;
+            font-size: 23px;
+            font-family: "Helvetica Neue",Helvetica,Arial;
+            font-size: 23px;
+        }
+    </style>
+</head>
+<body onafterprint="printDocument()">
+    <h1>GriTisome</h1>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat, vitae? Tempora, a soluta praesentium ex itaque maxime dicta suscipit neque quisquam dolore magni, voluptatem amet reiciendis odit provident impedit. Non vitae laboriosam vero quae!</p>
+
+    <p>The keyboard shortcut ctrl + p print a page.</p>
+
+    <script>
+        function printDocument(){
+            alert("This document is now being printed")
+        }
+    </script>
+</body>
+</html>

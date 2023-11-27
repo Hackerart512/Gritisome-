@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>video in text</title>
+
+    <style>
+        *{
+            padding:0px;
+            margin:0px;
+        }
+
+        h2{
+            position: absolute;
+            top:0px;
+            left:0px;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            text-transform: uppercase;
+            font-weight:900;
+            line-height: 0.85em;
+            color: white;
+            background-color: black;
+            mix-blend-mode: multiply;
+            font-size:18vh;
+        }
+
+        video{
+            height:100%;
+            width:100%;
+            object-fit: cover;
+        }
+
+        .container{
+            width:100%;
+            height:100vh
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <video src="./image/bg.mp4" autoplay loop muted></video>
+        <h2>Gritisome</h2>
+    </div>
+</body>
+</html>

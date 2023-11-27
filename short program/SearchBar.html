@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Bar (Gritisome)</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        *{
+            margin:0px;
+            padding: 0px;
+        }
+
+        body{
+            background-color: #292222;
+        }
+
+        .searchbar{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50%;
+            height: 80vh;
+            margin: auto;
+        }
+
+        label{
+            position: relative;
+            height: 0vh;
+        }
+
+        label i{
+            position: absolute;
+            left: -27px;
+            top: -7px;
+        }
+
+        input{
+            color:white;
+            width: 7vh;
+            height: 7vh;
+            background-image:linear-gradient(to right, #242121, #e95656) ;
+            border-radius: 6px;
+            transition: all 0.5s ease-in-out;
+            cursor: pointer;
+        }
+
+        input:focus{
+            width: 30vh;
+        }
+    </style>
+</head>
+<body>
+    <div class="searchbar">
+        <input id ="search" type="search">
+        <label for="search">
+            <i class="fa-solid fa-magnifying-glass"></i>
+        </label>
+    </div>
+</body>
+</html>
