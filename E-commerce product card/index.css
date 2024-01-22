@@ -1,0 +1,70 @@
+* {
+    padding: 0px;
+    margin: 0px;
+}
+
+.card {
+    background: #009688;
+    width: 500px;
+    position: relative;
+    transition: all 0.5s ease-in-out
+}
+
+img {
+    width: 316px;
+}
+
+h2 {
+    width: 80%;
+}
+
+.card-image {
+    position: absolute;
+    transition: all 0.5s ease-in-out
+}
+
+.headphone-btn {
+    background-color: #7acf35;
+}
+
+.card:hover {
+    animation: sweet_bounce 0.7s ease-in-out 0.5s infinite alternate;
+    transform: translateY(-15px);
+    cursor: pointer;
+}
+
+@keyframes sweet_bounce {
+    from {
+        transform: translateY(-15px);
+    }
+
+    to {
+        transform: translateY(-7px);
+    }
+}
+
+.card:hover .card-image {
+    transform: translateY(-10px);
+    transform: scale(1.1);
+}
+
+@media only screen and (max-width:535px) {
+    .card-image {
+        position: static;
+    }
+
+    .card {
+        width: 90%;
+        align-items:center;
+    }
+
+    h2,p{
+        width: 100%;
+        text-align: center;
+    }
+    
+    button{
+        width: 100%;
+        margin: auto;
+    }
+}
