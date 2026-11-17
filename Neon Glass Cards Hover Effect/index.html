@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gritisome | Neon Glass Cards</title>
+<style>
+  :root{
+    --bg:#07070c; --glass:rgba(22,22,32,.8); --line:rgba(255,255,255,.14);
+    --text:#f3f3f8; --muted:#8b8b9c;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    min-height:100vh; background:radial-gradient(1200px 600px at 50% -10%,#16102a,var(--bg) 60%);
+    color:var(--text); font-family:Inter,system-ui,Segoe UI,Roboto,sans-serif;
+  }
+
+  /* top bar */
+  .bar{display:flex;align-items:center;gap:14px;padding:16px 22px;border-bottom:1px solid #15151f}
+  .logo{width:22px;height:22px;color:#8b6cff}
+  .bar a{color:var(--text);font-size:13px;text-decoration:none;margin-right:auto}
+  .pill{font-size:11px;letter-spacing:.06em;font-weight:600;padding:7px 12px;border-radius:7px;
+    background:#1b1b27;border:1px solid #2a2a3a;color:var(--text)}
+  .switch{width:38px;height:22px;border-radius:99px;background:#2a2a3a;position:relative;cursor:pointer;
+    transition:background .3s;border:0}
+  .switch::after{content:"";position:absolute;top:3px;left:3px;width:16px;height:16px;border-radius:50%;
+    background:#fff;transition:transform .3s}
+  .switch.on{background:#8b6cff;box-shadow:0 0 14px #8b6cff88}
+  .switch.on::after{transform:translateX(16px)}
+
+  /* stack */
+  .stack{display:flex;flex-direction:column;gap:26px;align-items:center;padding:70px 20px;perspective:1000px}
+
+  .card{
+    --c1:#b45cff; --c2:#ff3df0;
+    position:relative; width:min(380px,92vw); height:128px; border-radius:18px;
+    background:var(--glass); backdrop-filter:blur(10px);
+    border:1px solid var(--line); cursor:pointer;
+    transition:transform .35s cubic-bezier(.2,.8,.2,1), box-shadow .4s, border-color .4s;
+    transform-style:preserve-3d;
+  }
+  .card.cyber{--c1:#a24bff;--c2:#ff3df0}
+  .card.synth{--c1:#19f0c8;--c2:#ff9a2e}
+  .card.neo  {--c1:#ffd23d;--c2:#22e4ff}
+
+  /* gradient neon border (hidden until active) */
+  .card::before{
+    content:"";position:absolute;inset:-2px;border-radius:20px;padding:2px;
+    background:linear-gradient(120deg,var(--c1),var(--c2));
+    -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+    -webkit-mask-composite:xor; mask-composite:exclude;
+    opacity:0;transition:opacity .4s;z-index:3;pointer-events:none;
+  }
+  .card.active{transform:scale(1.05) translateZ(30px);border-color:transparent;
+    box-shadow:0 0 28px -4px var(--c1), 0 0 60px -10px var(--c2)}
+  .card.active::before{opacity:1}
+
+  /* animated scene canvas (clipped inside card) */
+  .scene{position:absolute;inset:0;border-radius:18px;overflow:hidden;z-index:0}
+  .scene canvas{width:100%;height:100%;display:block;opacity:0;transition:opacity .5s}
+  .card.active .scene canvas{opacity:1}
+  .scene::after{content:"";position:absolute;inset:0;
+    background:linear-gradient(90deg,rgba(0,0,0,.55),rgba(0,0,0,0) 65%)}
+
+  /* orbit particle canvas (overflows the card) */
+  .orbit{position:absolute;left:-60px;top:-60px;width:calc(100% + 120px);height:calc(100% + 120px);
+    pointer-events:none;z-index:4;opacity:0;transition:opacity .4s}
+  .card.active .orbit{opacity:1}
+
+  /* content */
+  .content{position:relative;z-index:2;height:100%;padding:14px 16px;display:flex;flex-direction:column;justify-content:space-between}
+  .badge{width:38px;height:38px;border-radius:10px;display:grid;place-items:center;font-weight:600;font-size:15px;
+    color:#7d7d90;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.08);transition:.3s}
+  .card.active .badge{color:#fff;background:rgba(255,255,255,.16)}
+  .dots{position:absolute;top:14px;right:14px;width:30px;height:22px;border-radius:7px;
+    background:rgba(255,255,255,.08);display:grid;place-items:center;font-size:13px;letter-spacing:1px;color:#ddd;z-index:2}
+  .row{display:flex;align-items:center;gap:12px}
+  .icon{width:36px;height:36px;border-radius:10px;display:grid;place-items:center;color:var(--c1);
+    background:rgba(255,255,255,.06)}
+  .icon svg{width:20px;height:20px}
+  .small{font-size:10px;color:var(--muted);line-height:1}
+  .title{font-size:18px;font-weight:700;text-shadow:0 2px 10px #000}
+
+  /* ===== ALL EFFECTS mode ===== */
+  .stack{transition:gap .6s}
+  .item{position:relative}
+  .item .card{z-index:2}
+  .ring{position:absolute;left:-90px;top:-70px;width:calc(100% + 180px);height:calc(100% + 140px);
+    pointer-events:none;opacity:0;transition:opacity .5s}
+  .ring.back{z-index:1}
+  .ring.front{z-index:5}
+  body.all .ring{opacity:1}
+  body.all .stack{gap:14px}
+  body.all .card{transform:none!important}
+  body.all .orbit{opacity:0!important}
+  body.all .card.active{box-shadow:0 0 22px -10px var(--c1)}
+  body.all .card.active::before{opacity:.55}
+  body.all .item:first-child .card.active::before{opacity:1}
+  body.all .item:first-child .card.active{box-shadow:0 0 26px -4px var(--c1),0 0 50px -12px var(--c2)}
+  /* cards keep their artwork after being hovered */
+  .card.seen .scene canvas{opacity:.8}
+  .card.cyber.seen .scene canvas,body.all .card.cyber .scene canvas{opacity:.15}
+  .pill{cursor:pointer}
+</style>
+</head>
+<body>
+
+<div class="bar">
+  <svg class="logo" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 20c-2-5 1-14 8-14 4 0 5 4 2 6-3 2-7-1-8 8z"/></svg>
+  <a href="#">Home</a>
+  <span class="pill">ALL EFFECTS</span>
+  <button class="switch" id="all" aria-label="Toggle all effects"></button>
+</div>
+
+<div class="stack">
+  <div class="card cyber" data-scene="cyber">
+    <div class="scene"><canvas></canvas></div>
+    <canvas class="orbit"></canvas>
+    <div class="dots">•••</div>
+    <div class="content">
+      <div class="badge">01</div>
+      <div class="row">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 7a4 4 0 1 0 0 8h2M15 17a4 4 0 1 0 0-8h-2"/></svg></div>
+        <div><div class="small">01</div><div class="title">Cyberpunk</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card synth" data-scene="synth">
+    <div class="scene"><canvas></canvas></div>
+    <canvas class="orbit"></canvas>
+    <div class="dots">•••</div>
+    <div class="content">
+      <div class="badge">02</div>
+      <div class="row">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 19l3-6 4 4 6-12-3 9z"/></svg></div>
+        <div><div class="small">02</div><div class="title">Synthwave</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card neo" data-scene="neo">
+    <div class="scene"><canvas></canvas></div>
+    <canvas class="orbit"></canvas>
+    <div class="dots">•••</div>
+    <div class="content">
+      <div class="badge">03</div>
+      <div class="row">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="3"/><path d="M3 16l5-5 5 5 3-3 5 5"/></svg></div>
+        <div><div class="small">03</div><div class="title">Neofuturism</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+const cards=[...document.querySelectorAll('.card')];
+const toggle=document.getElementById('all');
+let allOn=false;
+
+/* ---------- activation (hover + toggle) ---------- */
+cards.forEach(c=>{
+  c.addEventListener('mouseenter',()=>c.classList.add('active','seen'));
+  c.addEventListener('mouseleave',()=>{ if(!allOn) c.classList.remove('active'); c.style.transform=''; });
+  c.addEventListener('mousemove',e=>{            // subtle 3D tilt
+    const r=c.getBoundingClientRect();
+    const x=(e.clientX-r.left)/r.width-.5, y=(e.clientY-r.top)/r.height-.5;
+    c.style.transform=`scale(1.05) translateZ(30px) rotateX(${-y*8}deg) rotateY(${x*10}deg)`;
+  });
+});
+function toggleAll(){
+  allOn=!allOn; toggle.classList.toggle('on',allOn); document.body.classList.toggle('all',allOn);
+  cards.forEach(c=>{c.classList.toggle('active',allOn); if(allOn)c.classList.add('seen');});
+}
+toggle.addEventListener('click',toggleAll);
+document.querySelector('.pill').addEventListener('click',toggleAll);
+
+/* ---------- canvas setup ---------- */
+const DPR=Math.min(devicePixelRatio||1,2);
+function fit(cv){const r=cv.getBoundingClientRect();cv.width=r.width*DPR;cv.height=r.height*DPR;
+  const x=cv.getContext('2d');x.setTransform(DPR,0,0,DPR,0,0);return {x,w:r.width,h:r.height};}
+
+/* ---------- scenes ---------- */
+const scenes={
+  cyber(x,w,h,t){
+    const g=x.createLinearGradient(0,0,w,h);g.addColorStop(0,'#140824');g.addColorStop(1,'#3a0f5e');
+    x.fillStyle=g;x.fillRect(0,0,w,h);
+    for(let r=0;r<16;r++){
+      for(let c=0;c<70;c++){
+        const px=c*w/69, wave=Math.sin(c*.18+t*2+r*.35)*14+Math.sin(c*.07-t*1.3)*10;
+        const py=h*.45+r*5+wave*(1-r/22);
+        x.fillStyle=`hsla(${290+c*1.2},100%,${60+r*1.5}%,${.25+r/24})`;
+        x.beginPath();x.arc(px,py,1.1,0,6.3);x.fill();
+      }
+    }
+  },
+  synth(x,w,h,t){
+    const g=x.createLinearGradient(0,0,0,h);g.addColorStop(0,'#10062b');g.addColorStop(.6,'#5a1470');g.addColorStop(1,'#ff4f8b');
+    x.fillStyle=g;x.fillRect(0,0,w,h);
+    const sx=w*.52,sy=h*.45,R=34;                       // sun
+    const sg=x.createLinearGradient(0,sy-R,0,sy+R);sg.addColorStop(0,'#ffe14d');sg.addColorStop(1,'#ff3f8e');
+    x.fillStyle=sg;x.shadowColor='#ff8a3d';x.shadowBlur=24;x.beginPath();x.arc(sx,sy,R,0,6.3);x.fill();x.shadowBlur=0;
+    x.fillStyle='#2a0a45';for(let i=0;i<5;i++){x.fillRect(sx-R,sy+4+i*7,R*2,1+i*.8)}   // stripes
+    x.fillStyle='#14082a';x.beginPath();x.moveTo(0,h*.62);                              // mountains
+    [[.1,.45],[.2,.58],[.3,.4],[.4,.6],[.6,.6],[.7,.38],[.8,.55],[.9,.42],[1,.6]].forEach(p=>x.lineTo(p[0]*w,p[1]*h));
+    x.lineTo(w,h*.65);x.lineTo(0,h*.65);x.fill();x.strokeStyle='#27e6ff';x.lineWidth=1;x.stroke();
+    x.fillStyle='#10062b';x.fillRect(0,h*.65,w,h*.35);                                  // grid floor
+    x.strokeStyle='rgba(39,230,255,.8)';
+    for(let i=-12;i<=12;i++){x.beginPath();x.moveTo(w/2+i*8,h*.65);x.lineTo(w/2+i*45,h);x.stroke()}
+    for(let i=0;i<8;i++){const p=((i+t*1.2)%8)/8,y=h*.65+Math.pow(p,2)*h*.35;
+      x.globalAlpha=.3+p*.7;x.beginPath();x.moveTo(0,y);x.lineTo(w,y);x.stroke()}x.globalAlpha=1;
+  },
+  neo(x,w,h,t){
+    const g=x.createLinearGradient(0,0,0,h);g.addColorStop(0,'#04122a');g.addColorStop(1,'#0a3a5c');
+    x.fillStyle=g;x.fillRect(0,0,w,h);
+    for(let i=0;i<46;i++){                                                               // matrix rain
+      const px=(i*53%w), sp=40+(i*29%60), py=((t*sp+i*37)%(h+40))-20;
+      const lg=x.createLinearGradient(0,py-30,0,py);lg.addColorStop(0,'rgba(34,228,255,0)');lg.addColorStop(1,'rgba(34,228,255,.9)');
+      x.fillStyle=lg;x.fillRect(px,py-30,1.4,30);
+    }
+    const bs=[[.34,.5,.07],[.42,.3,.06],[.5,.18,.07],[.58,.36,.06],[.66,.52,.07],[.46,.55,.1],[.56,.58,.09]]; // city
+    bs.forEach(([bx,by,bw],i)=>{
+      const bg=x.createLinearGradient(0,by*h,0,h*.78);bg.addColorStop(0,'#c58bff');bg.addColorStop(1,'#3b2a9a');
+      x.fillStyle=bg;x.shadowColor='#b66bff';x.shadowBlur=10;x.fillRect(bx*w,by*h,bw*w,h*.78-by*h);
+    });x.shadowBlur=0;
+    x.fillStyle='#061a33';x.fillRect(0,h*.78,w,h*.22);                                   // floor grid
+    x.strokeStyle='rgba(34,228,255,.7)';x.lineWidth=1;
+    for(let i=-10;i<=10;i++){x.beginPath();x.moveTo(w/2+i*10,h*.78);x.lineTo(w/2+i*40,h);x.stroke()}
+    for(let i=0;i<4;i++){const y=h*.78+((i+t)%4)/4*h*.22;x.beginPath();x.moveTo(0,y);x.lineTo(w,y);x.stroke()}
+  }
+};
+
+/* ---------- orbiting particle ring ---------- */
+function orbit(x,w,h,t,c1,c2,seed){
+  x.clearRect(0,0,w,h);
+  const cx=w/2, cy=h/2, a=w/2-14, b=h/2-10, tilt=-.12+seed*.05;
+  const pos=(ang)=>{const px=Math.cos(ang)*a, py=Math.sin(ang)*b*(.9+.1*Math.cos(ang*2));
+    return [cx+px*Math.cos(tilt)-py*Math.sin(tilt), cy+px*Math.sin(tilt)+py*Math.cos(tilt)]};
+  x.globalCompositeOperation='lighter';x.lineCap='round';
+  for(let k=0;k<2;k++){                                   // two glowing comet trails
+    const head=t*(1.4+seed*.2)+k*Math.PI+seed;
+    for(let i=0;i<60;i++){
+      const [x1,y1]=pos(head-i*.03),[x2,y2]=pos(head-(i+1)*.03);
+      x.strokeStyle=k?c2:c1;x.globalAlpha=1-i/60;x.lineWidth=4*(1-i/60)+.6;
+      x.shadowColor=k?c2:c1;x.shadowBlur=12;
+      x.beginPath();x.moveTo(x1,y1);x.lineTo(x2,y2);x.stroke();
+    }
+  }
+  x.shadowBlur=0;
+  for(let i=0;i<70;i++){                                  // drifting sparkles
+    const ang=i*.2+t*.5*(i%3?1:-1)+seed, drift=Math.sin(t*2+i)*12;
+    const [px,py]=pos(ang), nx=Math.cos(ang), ny=Math.sin(ang);
+    x.globalAlpha=.35+.65*Math.abs(Math.sin(t*3+i*1.7));
+    x.fillStyle=i%2?c1:c2;
+    x.beginPath();x.arc(px+nx*drift,py+ny*drift,.9+(i%4)*.35,0,6.3);x.fill();
+  }
+  x.globalAlpha=1;x.globalCompositeOperation='source-over';
+}
+
+/* ---------- ALL EFFECTS: 3D rings that pass behind + in front of each card ---------- */
+const rnd=(a,b)=>a+Math.random()*(b-a);
+const rings=cards.map((c,i)=>{
+  const it=document.createElement('div');it.className='item';c.before(it);
+  const back=document.createElement('canvas'),front=document.createElement('canvas');
+  back.className='ring back';front.className='ring front';it.append(back,c,front);
+  const [c1,c2]=[['#ff3df0','#ffa0f8'],['#19f0c8','#a8fff0'],['#ffd23d','#fff2a8']][i];
+  const roll=[-.16,-.12,-.1][i], k=[.22,.25,.2][i], spd=[1.5,1.2,1.35][i], ph=i*2;
+  const parts=Array.from({length:90},(_,n)=>({m:n%2,u:Math.random(),ro:rnd(-34,34)*(Math.random()<.3?1.6:1),
+    sz:rnd(.6,1.9),ph:rnd(0,6.3),base:rnd(0,6.3),sp:rnd(.3,.8)}));
+  let B,F,amt=0;
+  const refit=()=>{B=fit(back);F=fit(front)}; refit(); addEventListener('resize',refit);
+  return t=>{
+    amt+=((allOn?1:0)-amt)*.06;
+    B.x.clearRect(0,0,B.w,B.h);F.x.clearRect(0,0,F.w,F.h);
+    if(amt<.01) return;
+    const cx=B.w/2, cy=B.h/2+4, R=(B.w-180)/2+42, cr=Math.cos(roll), sr=Math.sin(roll);
+    const pt=(a,ro=0)=>{const r=R+ro,x=r*Math.cos(a),y=r*k*Math.sin(a);
+      return [cx+x*cr-y*sr, cy+x*sr+y*cr, Math.sin(a)]};          // [x, y, depth]
+    [B.x,F.x].forEach(g=>{g.globalCompositeOperation='lighter';g.lineCap='round'});
+    const head=-t*spd+ph, N=110, step=.045;
+    for(let n=0;n<N;n++){                                          // comet trail
+      const [x1,y1,d]=pt(head+n*step),[x2,y2]=pt(head+(n+1)*step);
+      const f=1-n/N, w=(Math.pow(f,.8)*5.5+.5)*(1+.3*d)*amt, g=(d<0?B:F).x;
+      g.beginPath();g.moveTo(x1,y1);g.lineTo(x2,y2);
+      g.strokeStyle=c1;g.globalAlpha=.16*f*amt;g.lineWidth=w*3.4;g.stroke();   // glow
+      g.strokeStyle=n<6?c2:c1;g.globalAlpha=f*amt;g.lineWidth=w;g.stroke();    // core
+    }
+    const [hx,hy,hd]=pt(head), hg=(hd<0?B:F).x;                    // bright head
+    hg.globalAlpha=amt;hg.fillStyle='#fff';hg.shadowColor=c1;hg.shadowBlur=14;
+    hg.beginPath();hg.arc(hx,hy,2.6,0,6.3);hg.fill();hg.shadowBlur=0;
+    parts.forEach(p=>{                                             // sparkles
+      const a=p.m? head+p.u*N*step+Math.sin(t+p.ph)*.05 : p.base-t*p.sp*.4;
+      const [x,y,d]=pt(a,p.ro+Math.sin(t*1.5+p.ph)*5), g=(d<0?B:F).x;
+      g.globalAlpha=(.25+.75*Math.abs(Math.sin(t*3+p.ph)))*amt*(p.m?1-p.u*.5:.7);
+      g.fillStyle=Math.sin(p.ph*7)>0?c1:c2;
+      g.beginPath();g.arc(x,y+Math.sin(t*2+p.ph)*4,p.sz,0,6.3);g.fill();
+    });
+    [B.x,F.x].forEach(g=>{g.globalAlpha=1;g.globalCompositeOperation='source-over'});
+  };
+});
+
+/* ---------- init + loop ---------- */
+const items=cards.map((c,i)=>{
+  const sc=c.querySelector('.scene canvas'), oc=c.querySelector('.orbit');
+  const cs=getComputedStyle(c);
+  return {c,sc,oc,name:c.dataset.scene,seed:i,
+    c1:cs.getPropertyValue('--c1').trim(),c2:cs.getPropertyValue('--c2').trim(),s:fit(sc),o:fit(oc)};
+});
+addEventListener('resize',()=>items.forEach(i=>{i.s=fit(i.sc);i.o=fit(i.oc)}));
+
+(function loop(ms){
+  const t=ms/1000;
+  items.forEach(i=>{
+    if(!i.c.classList.contains('active')) return;       // only animate active cards
+    scenes[i.name](i.s.x,i.s.w,i.s.h,t);
+    orbit(i.o.x,i.o.w,i.o.h,t,i.c1,i.c2,i.seed);
+  });
+  rings.forEach(d=>d(t));
+  requestAnimationFrame(loop);
+})(0);
+</script>
+</body>
+</html>
